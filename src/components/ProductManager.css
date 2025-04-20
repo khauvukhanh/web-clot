@@ -213,4 +213,51 @@ td:last-child {
 .discount-price {
   color: #ef4444;
   font-weight: 500;
+}
+
+.image-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.image-input-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.image-input-group input {
+  flex: 1;
+}
+
+.remove-image-button {
+  padding: 0.5rem;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.remove-image-button:hover:not(:disabled) {
+  background-color: #dc2626;
+}
+
+.add-image-button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: flex-start;
+}
+
+.add-image-button:hover:not(:disabled) {
+  background-color: #059669;
 } 

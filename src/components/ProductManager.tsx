@@ -309,21 +309,64 @@ const ProductManager: React.FC = () => {
             )}
           </div>
           <div className="form-group">
-            <label>Additional Images (one per line)</label>
-            <textarea
-              value={editingProduct ? editingProduct.images.join('\n') : newProduct.images.join('\n')}
-              onChange={(e) => {
-                const urls = e.target.value.split('\n').filter(url => url.trim());
-                if (editingProduct) {
-                  setEditingProduct({...editingProduct, images: urls});
-                } else {
-                  setNewProduct({...newProduct, images: urls});
-                }
-              }}
-              placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"
-              disabled={loading}
-              rows={3}
-            />
+            <label>Additional Images</label>
+            <div className="image-list">
+              {(editingProduct ? editingProduct.images : newProduct.images).map((image, index) => (
+                <div key={index} className="image-input-group">
+                  <input
+                    type="url"
+                    value={image}
+                    onChange={(e) => {
+                      const newImages = [...(editingProduct ? editingProduct.images : newProduct.images)];
+                      newImages[index] = e.target.value;
+                      if (editingProduct) {
+                        setEditingProduct({...editingProduct, images: newImages});
+                      } else {
+                        setNewProduct({...newProduct, images: newImages});
+                      }
+                    }}
+                    placeholder="https://example.com/image.jpg"
+                    disabled={loading}
+                  />
+                  <button
+                    type="button"
+                    className="remove-image-button"
+                    onClick={() => {
+                      const newImages = [...(editingProduct ? editingProduct.images : newProduct.images)];
+                      newImages.splice(index, 1);
+                      if (editingProduct) {
+                        setEditingProduct({...editingProduct, images: newImages});
+                      } else {
+                        setNewProduct({...newProduct, images: newImages});
+                      }
+                    }}
+                    disabled={loading}
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+              <button
+                type="button"
+                className="add-image-button"
+                onClick={() => {
+                  if (editingProduct) {
+                    setEditingProduct({
+                      ...editingProduct,
+                      images: [...editingProduct.images, '']
+                    });
+                  } else {
+                    setNewProduct({
+                      ...newProduct,
+                      images: [...newProduct.images, '']
+                    });
+                  }
+                }}
+                disabled={loading}
+              >
+                Add Image
+              </button>
+            </div>
           </div>
           <div className="form-actions">
             {editingProduct && (
