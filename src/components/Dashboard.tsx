@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CategoryManager from './CategoryManager';
 import './Dashboard.css';
 import ProductManager from './ProductManager';
+import OrderManager from './OrderManager';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -58,12 +59,7 @@ const Dashboard: React.FC = () => {
       <div className="dashboard-content">
         {activeMenu === 'categories' && <CategoryManager />}
         {activeMenu === 'products' && <ProductManager />}
-        {activeMenu === 'orders' && (
-          <div className="content-section">
-            <h2>Orders</h2>
-            <p>Manage your orders here.</p>
-          </div>
-        )}
+        {activeMenu === 'orders' && <OrderManager />}
       </div>
     </div>
   );
