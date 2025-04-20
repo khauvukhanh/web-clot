@@ -248,6 +248,7 @@ const CategoryManager: React.FC = () => {
             <thead>
               <tr>
                 <th>Image</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Actions</th>
@@ -275,6 +276,7 @@ const CategoryManager: React.FC = () => {
                       </div>
                     )}
                   </td>
+                  <td className="category-id">{category._id}</td>
                   <td>{category.name}</td>
                   <td>{category.description}</td>
                   <td>
